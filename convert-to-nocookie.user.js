@@ -8,7 +8,7 @@
 // @include      http://*/*
 // @include      https://*/*
 // @run-at       document-end
-// @version      1.0.0
+// @version      1.0.1
 // ==/UserScript==
 
 (function()
@@ -24,7 +24,6 @@
             }
             console.debug("iframe found and changed: " + document.getElementsByTagName('iframe')[i].getAttribute('src'));
             document.getElementsByTagName('iframe')[i].setAttribute('src', document.getElementsByTagName('iframe')[i].getAttribute('src').replace('www.youtube.com', 'www.youtube-nocookie.com'));
-            break;
         }
     }
 
