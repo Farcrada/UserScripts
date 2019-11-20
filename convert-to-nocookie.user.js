@@ -8,23 +8,29 @@
 // @include      http://*/*
 // @include      https://*/*
 // @run-at       document-end
-// @version      1.0.1
+// @version      1.0.2
 // ==/UserScript==
 
 (function()
 {
-  
+  if (document.getElementsByTagName('iframe'))
+  {
     for (var i = document.getElementsByTagName('iframe').length - 1; i >= 0; i--)
     {
+      if (document.getElementsByTagName('iframe')[i].getAttribute('src'))
+      {
         if (document.getElementsByTagName('iframe')[i].getAttribute('src').includes('www.youtube.com'))
         {
-            if (document.getElementsByTagName('iframe')[i].getAttribute('data-src'))
-            {
-                document.getElementsByTagName('iframe')[i].setAttribute('data-src', document.getElementsByTagName('iframe')[i].getAttribute('data-src').replace('www.youtube.com', 'www.youtube-nocookie.com'));
-            }
-            console.debug("iframe found and changed: " + document.getElementsByTagName('iframe')[i].getAttribute('src'));
-            document.getElementsByTagName('iframe')[i].setAttribute('src', document.getElementsByTagName('iframe')[i].getAttribute('src').replace('www.youtube.com', 'www.youtube-nocookie.com'));
+          document.getElementsByTagName('iframe')[i].setAttribute('src', document.getElementsByTagName('iframe')[i].getAttribute('src').replace('www.youtube.com', 'www.youtube-nocookie.com'));
+          
+          if (document.getElementsByTagName('iframe')[i].getAttribute('data-src'))
+          {
+            document.getElementsByTagName('iframe')[i].setAttribute('data-src', document.getElementsByTagName('iframe')[i].getAttribute('data-src').replace('www.youtube.com', 'www.youtube-nocookie.com'));
+          }
+          
+          console.debug("iframe found and changed: " + document.getElementsByTagName('iframe')[i].getAttribute('src'));
         }
+      }
     }
-
+  }
 }) ();
