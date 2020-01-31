@@ -8,17 +8,21 @@
 // @include      http://*/*
 // @include      https://*/*
 // @run-at       document-end
-// @version      1.0.2
+// @version      1.0.3
 // ==/UserScript==
 
-(function()
+window.addEventListener('load', function()
 {
   if (document.getElementsByTagName('iframe'))
   {
-    for (var i = document.getElementsByTagName('iframe').length - 1; i >= 0; i--)
+    //This needs to be re-filled because of webpages loading either slow or incomplete on the first "get"
+    var doc = document.getElementsByTagName('iframe');
+    for (var i = doc.length - 1; i >= 0; i--)
     {
       if (document.getElementsByTagName('iframe')[i].getAttribute('src'))
       {
+        console.debug("checking:" + document.getElementsByTagName('iframe')[i].getAttribute('src'));
+        
         if (document.getElementsByTagName('iframe')[i].getAttribute('src').includes('www.youtube.com'))
         {
           document.getElementsByTagName('iframe')[i].setAttribute('src', document.getElementsByTagName('iframe')[i].getAttribute('src').replace('www.youtube.com', 'www.youtube-nocookie.com'));
@@ -31,6 +35,7 @@
           console.debug("iframe found and changed: " + document.getElementsByTagName('iframe')[i].getAttribute('src'));
         }
       }
+      doc = document.getElementsByTagName('iframe');
     }
   }
-}) ();
+}, false);
