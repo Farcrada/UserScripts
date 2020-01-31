@@ -2,13 +2,13 @@
 // @name         Convert to nocookie
 // @namespace    https://github.com/Farcrada
 // @homepage     https://github.com/Farcrada/Convert-to-Nocookie
-// @downloadURL  https://github.com/Farcrada/Convert-to-Nocookie/raw/master/convert-to-nocookie.user.js
+// @updateURL    https://github.com/Farcrada/Convert-to-Nocookie/raw/master/convert-to-nocookie.user.js
 // @description  Makes external YouTube links work with anti-trackers
 // @author       Farcrada
 // @include      http://*/*
 // @include      https://*/*
 // @run-at       document-end
-// @version      1.0.3.1
+// @version      1.0.4
 // ==/UserScript==
 
 window.addEventListener('load', function()
