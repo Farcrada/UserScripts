@@ -14,7 +14,6 @@
 (function() {
   'use strict';
   var data=document.URL.match(/[\/\&](track|playlist|album|artist|show|episode)\/([^\&\#\/\?]+)/i);
-  console.log("This is a "+data[1]+" with id:"+data[2]+"\nAttempting to redirect");
   window.location.replace('spotify:'+data[1]+':'+data[2]);
   close();
 })();
