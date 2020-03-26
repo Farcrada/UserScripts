@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Open Spotify app
-// @namespace    https://github.com/Farcrada
-// @homepage     https://github.com/Farcrada/Convert-to-Nocookie
-// @updateURL    https://github.com/Farcrada/Convert-to-Nocookie/raw/master/convert-to-nocookie.user.js
+// @namespace    https://github.com/Farcrada/UserScripts
+// @homepage     https://github.com/Farcrada/UserScripts/tree/master/Open%20Spotify%20app
+// @updateURL    https://github.com/Farcrada/UserScripts/raw/master/Open%20Spotify%20app/open-spotify-app.user.js
 // @description  This userscript redirects open.spotify.com links to the desktop app
 // @author       Farcrada
 // @include      http://open.spotify.com/*
