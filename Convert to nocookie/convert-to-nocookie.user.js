@@ -8,23 +8,37 @@
 // @include      http://*/*
 // @include      https://*/*
 // @run-at       document-end
-// @version      1.0.5
+// @version      1.0.6
 // ==/UserScript==
 
-window.addEventListener('load', function()
-{
-	var iframes = document.querySelectorAll('iframe');
+// Select the node that will be observed for mutations
+const targetNode = document,
+// Options for the observer (which mutations to observe)
+  config = { attributes: true, childList: true, subtree: true },
+// Callback function to execute when mutations are observed
+  callback = (mutationList, observer) => {
+    for (const mutation of mutationList)
+      if(mutation.target)
+        changeYouTube(mutation.target?.querySelectorAll(`iframe`));
+  },
+// Create an observer instance linked to the callback function
+  observer = new MutationObserver(callback),
+  changeYouTube = (iframes) =>
+  {
+    if (iframes)
+      for (let i = 0; i < iframes.length; i++)
+      {
+        if(iframes[i]?.src?.includes?.("www.youtube.com"))
+          iframes[i].src = iframes[i].src.replace("www.youtube.com", "www.youtube-nocookie.com");
 
-	for (var i = 0; i < iframes.length; i++)
-	{
-		console.debug("checking: (" + i + ")");
-		console.debug(iframes[i]);
-		
-		iframes[i].src = iframes[i].src.replace('www.youtube.com', 'www.youtube-nocookie.com');
-		
-		if (iframes[i].getAttribute("data-lazy-src"))
-		{
-			iframes[i].src = iframes[i].getAttribute("data-lazy-src").replace('www.youtube.com', 'www.youtube-nocookie.com');
-		}
-	}
-}, false);
+        if (iframes[i]?.getAttribute?.(`data-lazy-src`)?.includes?.("www.youtube.com"))
+          iframes[i].setAttribute(`data-lazy-src`, iframes[i].getAttribute(`data-lazy-src`).replace("www.youtube.com", "www.youtube-nocookie.com"));
+
+        if (iframes[i]?.getAttribute?.(`data-src`)?.includes?.("www.youtube.com"))
+          iframes[i].setAttribute(`data-src`, iframes[i].getAttribute(`data-src`).replace("www.youtube.com", "www.youtube-nocookie.com"));
+
+      }
+  };
+
+// Start observing the target node for configured mutations
+observer.observe(targetNode, config);
